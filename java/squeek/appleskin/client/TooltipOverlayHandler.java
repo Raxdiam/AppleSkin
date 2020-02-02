@@ -1,6 +1,7 @@
 package squeek.appleskin.client;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
@@ -82,7 +83,8 @@ public class TooltipOverlayHandler
 		int toolTipBottomY = toolTipY + toolTipH + 1 + TOOLTIP_REAL_HEIGHT_OFFSET_BOTTOM;
 		int toolTipRightX = toolTipX + toolTipW + 1 + TOOLTIP_REAL_WIDTH_OFFSET_RIGHT;
 
-		boolean shouldDrawBelow = toolTipBottomY + 20 < mc.mainWindow.getScaledHeight() - 3;
+		MainWindow window = mc.getMainWindow();
+		boolean shouldDrawBelow = toolTipBottomY + 20 < window.getScaledHeight() - 3;
 
 		int rightX = toolTipRightX - 3;
 		int leftX = rightX - (Math.max(barsNeeded * 9 + (int) (mc.fontRenderer.getStringWidth(hungerText) * 0.75f), saturationBarsNeeded * 6 + (int) (mc.fontRenderer.getStringWidth(saturationText) * 0.75f))) - 3;

@@ -1,6 +1,7 @@
 package squeek.appleskin.client;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,7 +11,7 @@ import net.minecraft.util.FoodStats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.ForgeIngameGui;
+import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -51,10 +52,11 @@ public class HUDOverlayHandler
 			return;
 
 		Minecraft mc = Minecraft.getInstance();
+		MainWindow window = mc.getMainWindow();
 		PlayerEntity player = mc.player;
 
-		int left = mc.mainWindow.getScaledWidth() / 2 + 91;
-		int top = mc.mainWindow.getScaledHeight() - foodIconsOffset;
+		int left = window.getScaledWidth() / 2 + 91;
+		int top = window.getScaledHeight() - foodIconsOffset;
 
 		drawExhaustionOverlay(HungerHelper.getExhaustion(player), mc, left, top, 1f);
 	}
@@ -72,12 +74,13 @@ public class HUDOverlayHandler
 			return;
 
 		Minecraft mc = Minecraft.getInstance();
+		MainWindow window = mc.getMainWindow();
 		PlayerEntity player = mc.player;
 		ItemStack heldItem = player.getHeldItemMainhand();
 		FoodStats stats = player.getFoodStats();
 
-		int left = mc.mainWindow.getScaledWidth() / 2 + 91;
-		int top = mc.mainWindow.getScaledHeight() - foodIconsOffset;
+		int left = window.getScaledWidth() / 2 + 91;
+		int top = window.getScaledHeight() - foodIconsOffset;
 
 		// saturation overlay
 		if (ModConfig.SHOW_SATURATION_OVERLAY.get())
